@@ -1,7 +1,12 @@
 import "./App.css";
+import ProductList from "./components/ProductList";
 
 function App() {
-  return <div className="text-3xl font-bold underline">Hello world!</div>;
+  return (
+    <div>
+      <ProductList />
+    </div>
+  );
 }
 
 export default App;
