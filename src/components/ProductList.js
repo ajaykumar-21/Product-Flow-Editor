@@ -7,6 +7,7 @@ function ProductList({ nodes, setNodes }) {
   const [productsList, setProductList] = useState([]);
 
   useEffect(() => {
+    // Fetch product data on component mount
     const fetchData = async () => {
       try {
         const data = await axios.get("https://dummyjson.com/products");
@@ -19,13 +20,14 @@ function ProductList({ nodes, setNodes }) {
     fetchData();
   }, []);
 
+  // This function creates a new node for the flow editor based on the selected product.
   const handleAddNode = (product) => {
     // console.log(product);
     const newNode = {
       id: uuidv4(),
       type: "default",
       position: { x: Math.random() * 250, y: Math.random() * 250 },
-      data: { label: `${product.title} ($${product.price})` },
+      data: { label: `${product.title} ($${product.price})` }, // Label shown on node
     };
     setNodes([...nodes, newNode]);
   };

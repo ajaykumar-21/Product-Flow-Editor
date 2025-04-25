@@ -15,6 +15,7 @@ function FlowEditor() {
   const [edges, setEdges] = useState([]);
   // console.log(nodes, edges);
 
+  // Handles changes to nodes (like position updates, etc.)
   const onNodesChange = useCallback(
     (changes) => {
       setNodes((nds) => applyNodeChanges(changes, nds));
@@ -22,6 +23,7 @@ function FlowEditor() {
     [setNodes]
   );
 
+  // Handles changes to edges (like repositioning)
   const onEdgesChange = useCallback(
     (changes) => {
       setEdges((eds) => applyEdgeChanges(changes, eds));
@@ -29,6 +31,7 @@ function FlowEditor() {
     [setEdges]
   );
 
+  // Handles creation of new edges when nodes are connected
   const onConnect = useCallback(
     (params) =>
       setEdges((eds) =>
@@ -44,10 +47,11 @@ function FlowEditor() {
     [setEdges]
   );
 
+  // Handles click on an edge to remove it
   const onEdgeClick = useCallback(
     (event, edge) => {
-      event.stopPropagation();
-      setEdges((eds) => eds.filter((e) => e.id !== edge.id));
+      event.stopPropagation(); // Prevents click event from bubbling
+      setEdges((eds) => eds.filter((e) => e.id !== edge.id)); // Removes the clicked edge
     },
     [setEdges]
   );
