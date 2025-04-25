@@ -27,7 +27,7 @@ function ProductList({ nodes, setNodes }) {
       position: { x: Math.random() * 250, y: Math.random() * 250 },
       data: { label: `${product.title} ($${product.price})` },
     };
-    setNodes([...(nodes || []), newNode]);
+    setNodes([...nodes, newNode]);
   };
 
   return (
