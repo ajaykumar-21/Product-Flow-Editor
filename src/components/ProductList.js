@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 function ProductList({ nodes, setNodes }) {
-  console.log(nodes, setNodes);
+  // console.log(nodes, setNodes);
   const [productsList, setProductList] = useState([]);
 
   useEffect(() => {

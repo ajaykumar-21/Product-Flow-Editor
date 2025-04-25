@@ -13,7 +13,7 @@ import ProductList from "./ProductList";
 function FlowEditor() {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
-  console.log(nodes, edges);
+  // console.log(nodes, edges);
 
   const onNodesChange = useCallback(
     (changes) => {
@@ -44,6 +44,14 @@ function FlowEditor() {
     [setEdges]
   );
 
+  const onEdgeClick = useCallback(
+    (event, edge) => {
+      event.stopPropagation();
+      setEdges((eds) => eds.filter((e) => e.id !== edge.id));
+    },
+    [setEdges]
+  );
+
   return (
     <div className="flex flex-col md:flex-row h-screen">
       <div className="w-full md:w-1/2 p-4 border-r overflow-y-auto">
@@ -56,6 +64,7 @@ function FlowEditor() {
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
+          onEdgeClick={onEdgeClick}
           fitView
         >
           <MiniMap />
