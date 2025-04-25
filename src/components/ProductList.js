@@ -8,7 +8,7 @@ function ProductList() {
     const fetchData = async () => {
       try {
         const data = await axios.get("https://dummyjson.com/products");
-        console.log(data.data.products);
+        // console.log(data.data.products);
         setProductList(data.data.products);
       } catch (error) {
         console.log("Error while fetching products", error);
