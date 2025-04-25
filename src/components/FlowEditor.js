@@ -6,19 +6,20 @@ import ReactFlow, {
   applyNodeChanges,
   applyEdgeChanges,
 } from "reactflow";
+import "reactflow/dist/style.css";
 
 import ProductList from "./ProductList";
 
 function FlowEditor() {
-  const [nodes, setnodes] = useState([]);
+  const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
   console.log(nodes, edges);
 
   const onNodesChange = useCallback(
     (changes) => {
-      setnodes((nds) => applyNodeChanges(changes, nds));
+      setNodes((nds) => applyNodeChanges(changes, nds));
     },
-    [setnodes]
+    [setNodes]
   );
 
   const onEdgesChange = useCallback(
@@ -31,7 +32,7 @@ function FlowEditor() {
   return (
     <div className="flex flex-col md:flex-row h-screen">
       <div className="w-full md:w-1/2 p-4 border-r overflow-y-auto">
-        <ProductList />
+        <ProductList nodes={nodes} setNodes={setNodes} />
       </div>
       <div className="w-full md:w-2/3 p-4">
         <ReactFlow

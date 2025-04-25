@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
-function ProductList() {
+function ProductList({ nodes, setNodes }) {
+  console.log(nodes, setNodes);
   const [productsList, setProductList] = useState([]);
 
   useEffect(() => {
@@ -17,6 +19,17 @@ function ProductList() {
     fetchData();
   }, []);
 
+  const handleAddNode = (product) => {
+    // console.log(product);
+    const newNode = {
+      id: uuidv4(),
+      type: "default",
+      position: { x: Math.random() * 250, y: Math.random() * 250 },
+      data: { label: `${product.title} ($${product.price})` },
+    };
+    setNodes([...(nodes || []), newNode]);
+  };
+
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-3 gap-6 m-10">
@@ -25,6 +38,7 @@ function ProductList() {
             <div
               key={product.id}
               className="border rounded-xl p-4 shadow-md hover:shadow-xl transition-shadow bg-white"
+              onClick={() => handleAddNode(product)}
             >
               <img
                 src={product.images[0]}
